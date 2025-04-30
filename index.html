@@ -1,255 +1,92 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Exceed Client</title>
-  <style>
-    /* Общие стили */
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0a0000, #33001a, #4d0000);
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aloha | био</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
 
-    .container {
-      padding: 80px 20px 40px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.3);
+        }
 
-    .logo {
-      font-size: 100px;
-      background: linear-gradient(to right, #ff003c, #ff006e, #990000);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: logoAnimation 2s infinite alternate;
-    }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
 
-    /* Анимация логотипа */
-    @keyframes logoAnimation {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .text-box {
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+            border: 3px solid #fff; /* Белая обводка */
+            border-radius: 15px; /* Скругленные углы */
+            display: inline-block;
+        }
 
-    h1 {
-      font-size: 3em;
-      margin: 10px 0;
-      background: linear-gradient(to right, #ff003c, #ff006e, #990000);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #fff; /* Белый цвет для текста */
+        }
 
-    .desc {
-      font-size: 1.2em;
-      color: #ccc;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.8;
-    }
+        p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #fff; /* Белый цвет для текста */
+        }
 
-    .download-btn {
-      padding: 15px 35px;
-      font-size: 1.2em;
-      background: linear-gradient(90deg, #ff003c, #ff006e, #990000);
-      border: none;
-      border-radius: 10px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s ease;
-      box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
-    }
+        .telegram-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
 
-    .download-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 0, 60, 0.7);
-    }
+        .telegram-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
 
-    /* Карточки с функциями */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-      justify-items: center;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: left;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      max-width: 350px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
-    }
-
-    .feature-card h3 {
-      color: #ff006e;
-      margin-bottom: 15px;
-      font-size: 1.6em;
-    }
-
-    .feature-card p {
-      font-size: 1em;
-      color: #ddd;
-      line-height: 1.6;
-    }
-
-    footer {
-      margin: 60px 0 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
-
-    /* Стили для видео */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
-      margin-top: 20px;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Стили для FAQ */
-    ul {
-      text-align: left;
-      margin-top: 20px;
-      color: #ccc;
-      font-size: 1em;
-      line-height: 1.6;
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    li {
-      padding: 10px;
-      border-bottom: 1px solid #444;
-    }
-
-    li strong {
-      font-weight: bold;
-    }
-
-    /* Мобильная адаптивность */
-    @media screen and (max-width: 768px) {
-      h1 {
-        font-size: 2.5em;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .feature-card {
-        max-width: 90%;
-        margin: 0 auto;
-      }
-
-      .video-container {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .feature-card {
-        padding: 20px;
-      }
-
-      .feature-card h3 {
-        font-size: 1.4em;
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="logo">✝</div>
-    <h1>Exceed Client</h1>
-    <div class="desc">
-      Бета-версия продвинутого клиента для Minecraft. Улучшенная графика, гибкие настройки, и надёжный обход античитов. Проверь сам!
-    </div>
-    <a href="" class="download-btn">Скачать Exceed</a>
+    <!-- Видео фон -->
+    <video autoplay muted loop id="bg-video">
+        <source src="kaneki.mp4" type="video/mp4">
+        Твой браузер не поддерживает видео.
+    </video>
 
-    <div class="features">
-      <div class="feature-card">
-        <h3>Визуальные фишки</h3>
-        <p>Интерфейс можно кастомизировать под себя, а визуальные эффекты и стили сделают игру намного ярче и интереснее.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Полная настройка</h3>
-        <p>Каждую функцию можно адаптировать под свои нужды. Используй готовые конфиги или создавай свои.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Максимальная оптимизация</h3>
-        <p>Клиент запускается даже на слабых устройствах, благодаря постоянной работе над производительностью.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Обновления</h3>
-        <p>Регулярно будут выпускатся улучшения и фиксы. Ты всегда получаешь актуальную и стабильную версию.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Поддержка</h3>
-        <p>Наша команда поможет решить любые вопросы. Мы всегда на связи и готовы помочь в любой ситуации.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Основной создатель</h3>
-        <p>Ник человека который создал этот чит - вы очень скоро узнаете :)</p>
-      </div>
-    </div>
-
-    <div style="margin-top: 60px;">
-      <div class="feature-card" style="max-width: 700px; margin: 0 auto;">
-        <h3 style="text-align: center;">Видео-обзор клиента</h3>
-        <p style="text-align: center;">Ознакомься с основными функциями Exceed в видео. Тут позже появится полноценный обзор.</p>
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <!-- Контент с блоком обводки -->
+    <div class="content">
+        <div class="text-box">
+            <h1>aloha</h1>
+            <p>💻 Coder on <strong>Python</strong> and <strong>Java</strong><br>
+               📜 Paster </p>
+            <a href="https://t.me/alohaehub" target="_blank" class="telegram-link">my telegram username → @alohaehub</a>
         </div>
-      </div>
     </div>
-
-    <div style="margin-top: 60px;">
-      <div class="feature-card" style="max-width: 700px; margin: 0 auto;">
-        <h3 style="text-align: center;">FAQ — Часто задаваемые вопросы</h3>
-        <p style="text-align: center;">
-          У тебя есть вопрос? Возможно, ответ уже есть ниже! Мы собрали самые частые (и неожиданные) вопросы про наш клиент и сайт. <br>
-          Не стесняйся спрашивать — твой фидбэк помогает нам делать Exceed ещё лучше.
-        </p>
-        <ul>
-          <li><strong>Как установить клиент?</strong><br> Просто скачай архив, распакуй и следуй инструкции внутри. Всё максимально просто.</li>
-          <li><strong>Это бесплатно?</strong><br> Да, на этапе бета-теста Exceed полностью бесплатен.</li>
-          <li><strong>Будет ли работать на слабом ПК?</strong><br> Да, клиент оптимизирован и для старых систем, мы заботимся об этом.</li>
-          <li><strong>Где получить помощь?</strong><br> В скором времени появится Discord-сервер и Telegram-чат — ты не останешься один.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <footer>© 2025 Exceed Beta Team</footer>
 
 </body>
 </html>
